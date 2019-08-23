@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from authlib.flask.client import OAuth
@@ -66,7 +66,7 @@ def handle_authorize(remote, token, user_info):
     # add to db
     u = User(name=user_info.name, email=user_info.email)
     db.session.add(u)
-    db.session.commit()
+    # db.session.commit()
 
     # generating jwt
     # header = {'alg': 'RS256'}
@@ -82,7 +82,7 @@ def handle_authorize(remote, token, user_info):
     # print(jt)
     access_token = create_access_token(email)
 
-    return jsonify(access_token)
+    return render_template('jwt_redirect.html', jwt=str(access_token))
 
 
 google_bp = create_flask_blueprint(Google, oauth, handle_authorize)

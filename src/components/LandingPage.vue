@@ -18,7 +18,7 @@
         name: "LandingPage",
         methods: {
             login: function () {
-                window.location.replace('/login/')
+                window.location.replace('/google/login')
             }
         }
     }

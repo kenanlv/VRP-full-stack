@@ -5,7 +5,7 @@
             <p class="sign-in-title">Sign In</p>
             <p class="sign-in-subtitle">Vehicle Routing System</p>
             <div class="sign-in-button-wrapper">
-                <button class="sign-in-button-google">
+                <button @click="login" class="sign-in-button-google">
                     <p>Sign in with <i class="fab fa-google"></i></p>
                 </button>
             </div>
@@ -15,7 +15,12 @@
 
 <script>
     export default {
-        name: "LandingPage"
+        name: "LandingPage",
+        methods: {
+            login: function () {
+                window.location.replace('/login/')
+            }
+        }
     }
 </script>
 

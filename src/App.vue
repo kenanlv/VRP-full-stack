@@ -3,12 +3,14 @@
         <div id="left">
             <router-view></router-view>
         </div>
-        <div id="background" class="flex-fill">
+        <div id="background">
         </div>
     </div>
 </template>
 
 <script>
+
+
     export default {
         name: 'app'
     }
@@ -42,6 +44,7 @@
     }
 
     #background {
+        flex: 1;
         background-image: url("./assets/background.svg");
         background-repeat: no-repeat;
         background-size: cover;

@@ -64,21 +64,32 @@ if os.getenv("FLASK_ENV") == "development":
 @app.route('/api/info', methods=['GET', 'POST'])
 @jwt_required
 def get_update_user_info():
-    # for i in db.session.query(User):
-    #     print(i)
     if flask.request.method == 'GET':
         current_user_email = get_jwt_identity()
         # print(current_user_email)
         user_get = User.query.filter_by(email=current_user_email).first()
-        # user_get = db.session.query(User.id).filter_by(email=current_user_email)
         return row2dict(user_get)
     else:
         print(flask.request.is_json)
         print(flask.request.get_json())
         jason = flask.request.get_json()
-        find_user = User.query.filter_by(email=jason['email'])
-        find_user.update(jason, synchronize_session=False)
-        return "hi"
+        find_user = User.query.filter_by(email=jason['email']).first()
+        find_user.name = jason['name']
+        find_user.email = jason['email']
+        if jason['is_driver'] == 'True':
+            find_user.is_driver = True
+        else:
+            find_user.is_driver = False
+        if jason['will_present'] == 'True':
+            find_user.will_present = True
+        else:
+            find_user.will_present = False
+        find_user.capacity = int(jason['capacity'])
+        if jason['phone_number'] != 'None':
+            find_user.phone_number = int(jason['phone_number'])
+        find_user.address_id = jason['address_id']
+        find_user.address_show_txt = jason['address_show_txt']
+        return 'OK'
     # arr = {}
     # all_users = User.query.all()
     # print(user_get.all())

@@ -28,9 +28,10 @@ jwt = JWTManager(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, unique=True)
+    name = db.Column(db.String)
     email = db.Column(db.String, nullable=False)
     is_driver = db.Column(db.Boolean, default=False)
+    will_present = db.Column(db.Boolean, default=False)
     capacity = db.Column(db.Integer, default=1)
     phone_number = db.Column(db.Integer)
     address_id = db.Column(db.String)
@@ -58,15 +59,69 @@ if os.getenv("FLASK_ENV") == "development":
         return send_from_directory("static/img/", file)
 
 
+# @app.route('api/put')
+# def put_user_info():
+
+
+@app.route('/api/info')
+@jwt_required
+def get_user_info() -> {}:
+    # for i in db.session.query(User):
+    #     print(i)
+    current_user_email = get_jwt_identity()
+    # print(current_user_email)
+    # all_users = User.query.all()
+    user_get = User.query.filter_by(email=current_user_email).first()
+
+    # user_get = db.session.query(User.id).filter_by(email=current_user_email)
+    # print(user_get.all())
+    return row2dict(user_get)
+    # return vars(user_get)
+    # return user_get
+    # return row2dict(user_get)
+    # arr = {}
+    # i = 0
+    # for user in all_users:
+    #     # dict['name'] = ret.name
+    #     # dict[ret.id] = vars(ret)
+    #     # print(vars(ret))
+    #     # print(ret.__dict__)
+    #     arr[i] = row2dict(user)
+    #     # print(arr[i])
+    #     i += 1
+    # return arr
+
+
+def row2dict(row):
+    d = {}
+    for column in row.__table__.columns:
+        d[column.name] = str(getattr(row, column.name))
+    # for column in row.all():
+    #     print(column)
+    #     # d[column] = str(getattr(row, column))
+
+    return d
+
+
 def handle_authorize(remote, token, user_info):
     email = user_info.email
-    name = user_info.name
-    # print(email, name)
+    u_name = user_info.name
+    print(email, u_name)
 
     # add to db
-    u = User(name=user_info.name, email=user_info.email)
-    db.session.add(u)
-    # db.session.commit()
+    u = User(name=user_info.name, email=user_info.email, will_present=True)
+
+    exists = db.session.query(User.id).filter_by(name=u_name).scalar()
+    # print(exists)
+
+    # exists is not None
+    if not exists:
+        db.session.add(u)
+        db.session.commit()
+    else:
+        x = db.session.query(User).get(exists)
+        x.will_present = True
+        db.session.commit()
 
     # generating jwt
     # header = {'alg': 'RS256'}
@@ -80,7 +135,8 @@ def handle_authorize(remote, token, user_info):
     # s = jwt.encode(header, payload, key)
     # jt = token['id_token']
     # print(jt)
-    access_token = create_access_token(email)
+
+    access_token = create_access_token(email, expires_delta=False)  # change expires_delta back for expiration of token
 
     return render_template('jwt_redirect.html', jwt=str(access_token))
 

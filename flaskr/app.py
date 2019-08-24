@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, send_from_directory, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -59,33 +60,31 @@ if os.getenv("FLASK_ENV") == "development":
         return send_from_directory("static/img/", file)
 
 
-# @app.route('api/put')
-# def put_user_info():
 
-
-@app.route('/api/info')
+@app.route('/api/info', methods=['GET', 'POST'])
 @jwt_required
-def get_user_info() -> {}:
+def get_update_user_info():
     # for i in db.session.query(User):
     #     print(i)
-    current_user_email = get_jwt_identity()
-    # print(current_user_email)
-    # all_users = User.query.all()
-    user_get = User.query.filter_by(email=current_user_email).first()
-
-    # user_get = db.session.query(User.id).filter_by(email=current_user_email)
-    # print(user_get.all())
-    return row2dict(user_get)
-    # return vars(user_get)
-    # return user_get
-    # return row2dict(user_get)
+    if flask.request.method == 'GET':
+        current_user_email = get_jwt_identity()
+        # print(current_user_email)
+        user_get = User.query.filter_by(email=current_user_email).first()
+        # user_get = db.session.query(User.id).filter_by(email=current_user_email)
+        return row2dict(user_get)
+    else:
+        print(flask.request.is_json)
+        print(flask.request.get_json())
+        jason = flask.request.get_json()
+        find_user = User.query.filter_by(email=jason['email'])
+        find_user.update(jason, synchronize_session=False)
+        return "hi"
     # arr = {}
+    # all_users = User.query.all()
+    # print(user_get.all())
     # i = 0
     # for user in all_users:
-    #     # dict['name'] = ret.name
     #     # dict[ret.id] = vars(ret)
-    #     # print(vars(ret))
-    #     # print(ret.__dict__)
     #     arr[i] = row2dict(user)
     #     # print(arr[i])
     #     i += 1

@@ -76,19 +76,13 @@ def get_update_user_info():
         find_user = User.query.filter_by(email=jason['email']).first()
         find_user.name = jason['name']
         find_user.email = jason['email']
-        if jason['is_driver'] == 'True':
-            find_user.is_driver = True
-        else:
-            find_user.is_driver = False
-        if jason['will_present'] == 'True':
-            find_user.will_present = True
-        else:
-            find_user.will_present = False
+        find_user.is_driver = jason['is_driver'] == 'True'
+        find_user.will_present = jason['will_present'] == 'True'
         find_user.capacity = int(jason['capacity'])
-        if jason['phone_number'] != 'None':
-            find_user.phone_number = int(jason['phone_number'])
+        find_user.phone_number = int(jason['phone_number']) if jason['phone_number'] != 'None' else "hello"
         find_user.address_id = jason['address_id']
         find_user.address_show_txt = jason['address_show_txt']
+        db.session.commit()
         return 'OK'
     # arr = {}
     # all_users = User.query.all()

@@ -34,7 +34,7 @@ class User(db.Model):
     is_driver = db.Column(db.Boolean, default=False)
     will_present = db.Column(db.Boolean, default=False)
     capacity = db.Column(db.Integer, default=1)
-    phone_number = db.Column(db.Integer)
+    phone_number = db.Column(db.String, default="N/A")
     address_id = db.Column(db.String)
     address_show_txt = db.Column(db.String)
 
@@ -60,28 +60,41 @@ if os.getenv("FLASK_ENV") == "development":
         return send_from_directory("static/img/", file)
 
 
-
 @app.route('/api/info', methods=['GET', 'POST'])
 @jwt_required
 def get_update_user_info():
+    # global flg
     if flask.request.method == 'GET':
         current_user_email = get_jwt_identity()
-        # print(current_user_email)
+        print('GET')
+        print(current_user_email)
         user_get = User.query.filter_by(email=current_user_email).first()
-        return row2dict(user_get)
+        if user_get is not None:
+            return row2dict(user_get)
+        else:
+            return {'email': current_user_email}
     else:
+        print("POST")
         print(flask.request.is_json)
         print(flask.request.get_json())
         jason = flask.request.get_json()
+        flg = False
         find_user = User.query.filter_by(email=jason['email']).first()
+        print(find_user)
+        if not find_user:
+            flg = True
+            find_user = User()
         find_user.name = jason['name']
         find_user.email = jason['email']
         find_user.is_driver = jason['is_driver'] == 'True'
+        find_user.capacity = int(jason['capacity']) if jason['is_driver'] == 'True' else 1
         find_user.will_present = jason['will_present'] == 'True'
-        find_user.capacity = int(jason['capacity'])
-        find_user.phone_number = int(jason['phone_number']) if jason['phone_number'] != 'None' else "hello"
+        # find_user.phone_number = int(jason['phone_number']) if jason['phone_number'] != 'None' and jason['phone_number'][0] != '0' else "hello"
+        find_user.phone_number = jason['phone_number']
         find_user.address_id = jason['address_id']
         find_user.address_show_txt = jason['address_show_txt']
+        if flg:
+            db.session.add(find_user)
         db.session.commit()
         return 'OK'
     # arr = {}

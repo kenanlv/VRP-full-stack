@@ -37,7 +37,7 @@ class User(db.Model):
     phone_number = db.Column(db.String, default="N/A")
     address_id = db.Column(db.String)
     address_show_txt = db.Column(db.String)
-
+# need a new class of deport
 
 if os.getenv("FLASK_ENV") == "development":
     @app.route('/')

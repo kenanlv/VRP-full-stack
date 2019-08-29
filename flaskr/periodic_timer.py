@@ -14,7 +14,7 @@ huey = MemoryHuey()
 
 # @huey.periodic_task(crontab(minute='0', hour='3'))
 # @huey.periodic_task(crontab(minute='*/3')) #for every three minute
-@huey.periodic_task(crontab(minute='*/1'))
+@huey.periodic_task(crontab(minute='*/5'))
 def every_one_minute():
     print('This task runs every six seconds')
     # html_message = open('driver_email.html').read()

@@ -3,7 +3,6 @@ import urllib.request
 from app import User
 import os
 
-
 """
 Args:
    dis_mx: A 2D array, a, where a[i][j] represents from i to j distance
@@ -31,7 +30,8 @@ def calculation_prepare():
         locations.append(getattr(user, 'address_id'))
         locations_text.append(getattr(user, 'address_show_txt'))
         email_list.append(getattr(user, 'email'))
-        phone_num.append(getattr(user, 'phone_number'))
+        db_phone = getattr(user, 'phone_number')
+        phone_num.append('(' + db_phone[:3] + ')' + db_phone[3:6] + '-' + db_phone[6:])
         user_name.append(getattr(user, 'name'))
         i += 1
 
@@ -102,6 +102,10 @@ def calculation_prepare():
         y.append(loc['results'][0]['geometry']['location']['lat'])
     location.append(x)
     location.append(y)
+    # https: // maps.googleapis.com / maps / api / staticmap?center = Brooklyn + Bridge, New + York, NY&zoom=13&size
+    # =600x300 & maptype = roadmap & markers = color:blue % 7Clabel: S % 7C40.702147, 74.015794 & markers =
+    # color:green % 7Clabel: G % 7C40.711614, -74.012318 & markers = color:red % 7Clabel: C % 7C40.718217,
+    # -73.998284 & key = YOUR_API_KEY
     data = {'distance_matrix': dis_mx, 'capacities': capacities, 'origins': origins, 'location': location,
             'time_cost': time_cost, 'locations_txt': locations_text, 'email_list': email_list, 'phone_num': phone_num,
             'name': user_name}

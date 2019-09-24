@@ -10,6 +10,9 @@ from flask_jwt_extended import (
     get_jwt_identity
 )
 
+from models import User
+from database import db_session
+
 import os
 import json
 
@@ -20,23 +23,23 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['GOOGLE_CLIENT_ID'] = os.getenv('GOOGLE_CLIENT_ID')
 app.config['GOOGLE_CLIENT_SECRET'] = os.getenv('GOOGLE_CLIENT_SECRET')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+# db = SQLAlchemy(app)
+# migrate = Migrate(app, db)
 
 oauth = OAuth(app)
 jwt = JWTManager(app)
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    email = db.Column(db.String, nullable=False)
-    is_driver = db.Column(db.Boolean, default=False)
-    will_present = db.Column(db.Boolean, default=False)
-    capacity = db.Column(db.Integer, default=1)
-    phone_number = db.Column(db.String, default="N/A")
-    address_id = db.Column(db.String)
-    address_show_txt = db.Column(db.String)
+# class User(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String)
+#     email = db.Column(db.String, nullable=False)
+#     is_driver = db.Column(db.Boolean, default=False)
+#     will_present = db.Column(db.Boolean, default=False)
+#     capacity = db.Column(db.Integer, default=1)
+#     phone_number = db.Column(db.String, default="N/A")
+#     address_id = db.Column(db.String)
+#     address_show_txt = db.Column(db.String)
 # need a new class of deport
 
 if os.getenv("FLASK_ENV") == "development":
@@ -68,7 +71,8 @@ def get_update_user_info():
         current_user_email = get_jwt_identity()
         print('GET')
         print(current_user_email)
-        user_get = User.query.filter_by(email=current_user_email).first()
+        # user_get = User.query.filter_by(email=current_user_email).first()
+        user_get = db_session.query(User).filter_by(email=current_user_email).first()
         if user_get is not None:
             return row2dict(user_get)
         else:
@@ -79,7 +83,8 @@ def get_update_user_info():
         print(flask.request.get_json())
         jason = flask.request.get_json()
         flg = False
-        find_user = User.query.filter_by(email=jason['email']).first()
+        # find_user = User.query.filter_by(email=jason['email']).first()
+        find_user = db_session.query(User).filter_by(email=jason['email']).first()
         print(find_user)
         if not find_user:
             flg = True
@@ -94,8 +99,11 @@ def get_update_user_info():
         find_user.address_id = jason['address_id']
         find_user.address_show_txt = jason['address_show_txt']
         if flg:
-            db.session.add(find_user)
-        db.session.commit()
+            # db.session.add(find_user)
+            db_session.add(find_user)
+        # db.session.commit()
+        db_session.commit()
+
         return 'OK'
     # arr = {}
     # all_users = User.query.all()
@@ -128,17 +136,24 @@ def handle_authorize(remote, token, user_info):
     # add to db
     u = User(name=user_info.name, email=user_info.email, will_present=True)
 
-    exists = db.session.query(User.id).filter_by(name=u_name).scalar()
+    # exists = db.session.query(User.id).filter_by(name=u_name).scalar()
+    exists = db_session.query(User.id).filter_by(name=u_name).scalar()
     # print(exists)
 
     # exists is not None
     if not exists:
-        db.session.add(u)
-        db.session.commit()
+        # db.session.add(u)
+        # db.session.commit()
+
+        db_session.add(u)
+        db_session.commit()
     else:
-        x = db.session.query(User).get(exists)
+        # x = db.session.query(User).get(exists)
+
+        x = db_session.query(User).get(exists)
         x.will_present = True
-        db.session.commit()
+        # db.session.commit()
+        db_session.commit()
 
     # generating jwt
     # header = {'alg': 'RS256'}

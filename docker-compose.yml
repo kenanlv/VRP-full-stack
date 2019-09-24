@@ -1,9 +1,11 @@
-version: '3.1'
+version: '3'
 
 services:
+
   db:
     image: postgres
     restart: always
+#    container_name: postgres
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -12,6 +14,37 @@ services:
       - pg-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
-
+    networks:
+      - db_nw
+  web:
+    build: .
+    restart: always
+#    container_name: flask
+    env_file:
+      - .env
+#    ports:
+#      - 5000:5000
+    expose:
+#      - 5000
+      - 8080
+    networks:
+      - db_nw
+      - flask_nw
+      - default
+    depends_on:
+      - db
+  nginx:
+    build: ./nginx
+#    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    links:
+      - web:web
+networks:
+  db_nw:
+    driver: bridge
+  flask_nw:
+    driver: bridge
 volumes:
   pg-data:

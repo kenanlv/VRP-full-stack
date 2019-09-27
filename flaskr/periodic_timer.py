@@ -1,5 +1,4 @@
 from huey import MemoryHuey
-from app import db
 from huey import crontab
 import os
 from test import solving_for_route

@@ -2,6 +2,7 @@ import json
 import urllib.request
 from app import User
 import os
+from database import db_session
 
 """
 Args:
@@ -20,7 +21,10 @@ def calculation_prepare():
     email_list = []
     phone_num = []
     user_name = []
-    all_users = User.query.all()  # for locations matrix
+    # all_users = User.query.all()  # for locations matrix
+    all_users = db_session.query(User).all()  # for locations matrix
+    # find_user = User.query.filter_by(email=jason['email']).first()
+    # find_user = db_session.query(User).filter_by(email=jason['email']).first()
     i = 0
     for user in all_users:
         if getattr(user, 'is_driver'):

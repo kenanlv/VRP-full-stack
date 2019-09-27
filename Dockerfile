@@ -21,6 +21,12 @@ RUN pip install pipenv
 RUN pip install psycopg2
 RUN pip install flask uwsgi
 RUN pip install Authlib[client]
+######
+RUN pip install numpy
+RUN pip install ortools
+RUN pip install matplotlib
+######
+
 RUN pip install -r requirements.txt
 
 #RUN pip install uwsgi

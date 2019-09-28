@@ -16,16 +16,16 @@ Args:
 def calculation_prepare():
     capacities = []
     origins = []
-    locations = []
-    locations_text = []
-    email_list = []
-    phone_num = []
-    user_name = []
+    locations = [os.getenv('DEST_ID')]
+    locations_text = ["HA"]
+    email_list = ["HA"]
+    phone_num = ["123"]
+    user_name = ["dest"]
     # all_users = User.query.all()  # for locations matrix
     all_users = db_session.query(User).all()  # for locations matrix
     # find_user = User.query.filter_by(email=jason['email']).first()
     # find_user = db_session.query(User).filter_by(email=jason['email']).first()
-    i = 0
+    i = 1
     for user in all_users:
         if getattr(user, 'is_driver'):
             capacities.append(getattr(user, 'capacity'))

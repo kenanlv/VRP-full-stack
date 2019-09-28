@@ -13,7 +13,7 @@ huey = MemoryHuey()
 
 # @huey.periodic_task(crontab(minute='0', hour='3'))
 # @huey.periodic_task(crontab(minute='*/3')) #for every three minute
-@huey.periodic_task(crontab(minute='*/5'))
+@huey.periodic_task(crontab(minute='*/1'))
 def every_one_minute():
     print('This task runs every six seconds')
     # html_message = open('driver_email.html').read()
@@ -28,7 +28,7 @@ def every_one_minute():
         time = 0
         for i in range(1, len(path) - 1):
             time += time_cost[path[i - 1]][path[i]]
-            send_email(identifier='User', email=email[path[i]], phone=phone[path[0]], time=time)
+            send_email(identifier='User', email=email[path[i]], phone=phone[path[0]], time=time, name=user_name[path[i]])
             sub_user['name'].append(user_name[path[i]])
             sub_user['phone'].append(phone[path[i]])
             sub_user['address'].append(user_address[path[i]])

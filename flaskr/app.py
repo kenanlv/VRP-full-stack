@@ -42,27 +42,6 @@ jwt = JWTManager(app)
 #     address_show_txt = db.Column(db.String)
 # need a new class of deport
 
-if os.getenv("FLASK_ENV") == "development":
-    @app.route('/')
-    def index():
-        return send_from_directory("static", "index.html")
-
-
-    @app.route('/js/<file>')
-    def js(file):
-        return send_from_directory("static/js/", file)
-
-
-    @app.route('/css/<file>')
-    def css(file):
-        return send_from_directory("static/css/", file)
-
-
-    @app.route('/img/<file>')
-    def img(file):
-        return send_from_directory("static/img/", file)
-
-
 @app.route('/api/info', methods=['GET', 'POST'])
 @jwt_required
 def get_update_user_info():

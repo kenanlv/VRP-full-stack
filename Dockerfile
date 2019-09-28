@@ -3,9 +3,8 @@ FROM python:3.7
 
 MAINTAINER Kenan Lv <kelv@uw.edu>
 
-
-COPY flaskr /app/flaskr
-COPY requirements.txt /app/flaskr
+RUN mkdir /app
+RUN mkdir /app/flaskr
 #COPY .env /app/flaskr
 COPY .env /app/flaskr
 COPY Pipfile /app/flaskr
@@ -27,6 +26,7 @@ RUN pip install ortools
 RUN pip install matplotlib
 ######
 
+COPY requirements.txt /app/flaskr
 RUN pip install -r requirements.txt
 
 #RUN pip install uwsgi
@@ -38,6 +38,7 @@ RUN pip install -r requirements.txt
 #RUN pip install flask-jwt-extended
 
 #EXPOSE 5000
+COPY flaskr /app/flaskr
 
 ENV FLASK_ENV development
 #ENV FLASK_APP app.py

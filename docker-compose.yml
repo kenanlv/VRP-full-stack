@@ -19,13 +19,9 @@ services:
   web:
     build: .
     restart: always
-#    container_name: flask
     env_file:
       - .env
-#    ports:
-#      - 5000:5000
     expose:
-#      - 5000
       - 8080
     networks:
       - db_nw
@@ -33,9 +29,21 @@ services:
       - default
     depends_on:
       - db
+  huey:
+    image: full-stack-vrp_web
+    restart: always
+    command: bash -c "huey_consumer.py periodic_timer.huey"
+    env_file:
+      - .env
+    networks:
+      - db_nw
+      - flask_nw
+      - default
+    depends_on:
+      - db
+      - web
   nginx:
     build: ./nginx
-#    container_name: nginx
     restart: always
     ports:
       - "80:80"

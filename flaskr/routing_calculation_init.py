@@ -27,6 +27,9 @@ def calculation_prepare():
     # find_user = db_session.query(User).filter_by(email=jason['email']).first()
     i = 1
     for user in all_users:
+        if not user.will_present:
+            continue
+        user.will_present = False
         if getattr(user, 'is_driver'):
             capacities.append(getattr(user, 'capacity'))
             origins.append(i)
@@ -38,7 +41,7 @@ def calculation_prepare():
         phone_num.append('(' + db_phone[:3] + ')' + db_phone[3:6] + '-' + db_phone[6:])
         user_name.append(getattr(user, 'name'))
         i += 1
-
+    db_session.commit()
     # Convert locations
     # def get_distance(self):
     # Google MapsDdirections API endpoint

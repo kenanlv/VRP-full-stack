@@ -15,15 +15,15 @@ WORKDIR /app/flaskr
 #COPY ..Pipfile .
 #COPY ..Pipfile.lock .
 
-RUN pip install -U pip
-RUN pip install pipenv
-RUN pip install psycopg2
-RUN pip install flask uwsgi
-RUN pip install Authlib[client]
-######
-RUN pip install numpy
-RUN pip install ortools
-RUN pip install matplotlib
+#RUN pip install -U pip
+#RUN pip install pipenv
+#RUN pip install psycopg2
+#RUN pip install flask uwsgi
+#RUN pip install Authlib[client]
+#######
+#RUN pip install numpy
+#RUN pip install ortools
+#RUN pip install matplotlib
 ######
 
 COPY requirements.txt /app/flaskr
@@ -41,6 +41,8 @@ RUN pip install -r requirements.txt
 COPY flaskr /app/flaskr
 
 ENV FLASK_ENV development
+ENV TZ=America/Los_Angeles
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 #ENV FLASK_APP app.py
 #ENV FLASK_DEBUG 1
 #ENV SECRET_KEY ${SECRET_KEY}

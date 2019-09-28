@@ -90,6 +90,18 @@
                    class="ma-2 info-btn"
             >Logoff
             </v-btn>
+            <v-snackbar
+                    v-model="snackbar"
+            >
+                {{ error_msg }}
+                <v-btn
+                        color="pink"
+                        text
+                        @click="snackbar = false"
+                >
+                    Close
+                </v-btn>
+            </v-snackbar>
         </v-app>
     </div>
 </template>
@@ -103,6 +115,8 @@
         data: function () {
             return {
                 valid: true,
+                error_msg: "",
+                snackbar: false,
                 contactNumber: "",
                 name: "",
                 capacities: [1, 2, 3, 4, 5],
@@ -139,11 +153,15 @@
                     address_id: this.address_id,
                     address_show_txt: this.address,
                     capacity: "" + this.capacity
-                }, this.axiosConfig).then(() => {
-                    this.$router.push('/success')
-                }).catch((msg) => {
-                    console.log(msg)
-                })
+                }, this.axiosConfig)
+                    .then(() => {
+                        this.$router.push('/success')
+                    })
+                    .catch((msg) => {
+                        console.log(msg);
+                        this.error_msg = msg.response.data;
+                        this.snackbar = true;
+                    })
             }
         },
         watch: {

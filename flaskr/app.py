@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from authlib.flask.client import OAuth
 from loginpass import create_flask_blueprint, Google
+import time
 # from authlib.jose import jwt
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token,
@@ -23,6 +24,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['GOOGLE_CLIENT_ID'] = os.getenv('GOOGLE_CLIENT_ID')
 app.config['GOOGLE_CLIENT_SECRET'] = os.getenv('GOOGLE_CLIENT_SECRET')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+START_TIME = os.getenv("SOLVER_START_TIME")
 # db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
 
@@ -46,6 +48,10 @@ jwt = JWTManager(app)
 @jwt_required
 def get_update_user_info():
     # global flg
+    # ['Sun', 'Sep', '29', '08:35:08', '2019']
+    t = time.asctime().split(' ')
+    if (t[0] == 'Sat' and int(t[3][0:2]) > START_TIME) or t[0] == 'Sun':
+        return "Sorry, you could not sign up for the system after Saturday noon.", 400
     if flask.request.method == 'GET':
         current_user_email = get_jwt_identity()
         print('GET')

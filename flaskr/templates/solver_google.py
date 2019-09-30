@@ -81,7 +81,7 @@ class GoogleLocalSearchSolver(BaseSolver):
         # search_parameter.first_solution_strategy = (routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
         search_parameter.local_search_metaheuristic = (
             routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
-        search_parameter.time_limit.seconds = os.getenv('SOLVER_TIME_SPAN')
+        search_parameter.time_limit.seconds = int(os.getenv('SOLVER_TIME_SPAN'))
 
         assignment = routing.SolveWithParameters(search_parameter)
 

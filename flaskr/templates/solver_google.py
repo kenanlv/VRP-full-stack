@@ -2,6 +2,7 @@ from .solver import BaseSolver
 from typing import List
 from ortools.constraint_solver import routing_enums_pb2
 from ortools.constraint_solver import pywrapcp
+import os
 
 
 class GoogleLocalSearchSolver(BaseSolver):
@@ -80,7 +81,7 @@ class GoogleLocalSearchSolver(BaseSolver):
         # search_parameter.first_solution_strategy = (routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC)
         search_parameter.local_search_metaheuristic = (
             routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH)
-        search_parameter.time_limit.seconds = 15
+        search_parameter.time_limit.seconds = os.getenv('SOLVER_TIME_SPAN')
 
         assignment = routing.SolveWithParameters(search_parameter)
 

@@ -48,10 +48,7 @@ jwt = JWTManager(app)
 @jwt_required
 def get_update_user_info():
     # global flg
-    # ['Sun', 'Sep', '29', '08:35:08', '2019']
-    t = time.asctime().split(' ')
-    if (t[0] == 'Sat' and int(t[3][0:2]) > START_TIME) or t[0] == 'Sun':
-        return "Sorry, you could not sign up for the system after Saturday noon.", 400
+
     if flask.request.method == 'GET':
         current_user_email = get_jwt_identity()
         print('GET')
@@ -68,6 +65,11 @@ def get_update_user_info():
         print(flask.request.get_json())
         jason = flask.request.get_json()
         flg = False
+        # See if User trying to register after Sat noon
+        # ['Sun', 'Sep', '29', '08:35:08', '2019']
+        t = time.asctime().split(' ')
+        if (t[0] == 'Sat' and int(t[3][0:2]) > START_TIME) or t[0] == 'Sun':
+            return "Sorry, you could not sign up for the riding system after Saturday noon.", 400
         # find_user = User.query.filter_by(email=jason['email']).first()
         find_user = db_session.query(User).filter_by(email=jason['email']).first()
         print(find_user)

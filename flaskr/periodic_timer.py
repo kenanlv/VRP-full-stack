@@ -4,7 +4,7 @@ import os
 from test import solving_for_route
 from email_sender_helper import send_email
 
-huey = MemoryHuey()
+huey = MemoryHuey(utc=False)
 start_time = os.getenv("SOLVER_START_TIME")
 
 # @huey.periodic_task(crontab(minute='*/3')) #for every three minute

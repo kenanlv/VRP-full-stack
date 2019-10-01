@@ -18,12 +18,29 @@ Though the problem changed to multiple deports to a single destination, we could
 - Freed local machine byt Seting up a remote docker machine for deploying the web server remotely. 
       
 ## Getting Started
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+#### Backend
 
-You will need docker running on your local machine.
+##### Prerequisites
+
+> You will need docker running on your local machine.
+
+> Register for **Google developer consol** and get the Google API keys as environment variables for the project. 
+Find the useful information [here](https://developers.google.com/).
+
+    APIs needed to registart and obtain secret keys:
+
+    Google Oauth, 
+    Google Places, 
+    Google Distance Matrix, 
+    Google Geocoding, 
+    Google Maps Static
+
+> Have your web server and your own domain set up properly and obtain the access token and secrete key accordingly.
+
+For writing the secrete keys into the environment variables, please refer to the **".env"** file for proper input format.
+
 
 After pulled this project, go to the docker-compose.yml directory and type in the following command.
 
@@ -40,68 +57,16 @@ docker-compose run --rm web /bin/bash -c "python -c  'import database; database.
 When you **first** build and run the project, this will initialized your database and bootstrap the datatable.
 After the initialization, you could skip these two commands, and simply do "docker-compose up"
 
-### Installing
 
-A step by step series of examples that tell you how to get a development env running
+### Running the tests *(only for routing calculating function)*
 
+Refering to [test.py]([here](https://developers.google.com/).) under flaskr folder. 
 
-### Running the tests
+Write out your own problem for testing your solver.
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-# 
-
-## Project setup
+#
+#### Frontend
+##### Project setup
 ```
 npm install
 ```
@@ -128,3 +93,27 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+#
+
+
+## Authors
+
+* **Tony Fei** - [GitHub page](https://github.com/sa-tony)
+* **Kenan Lv** - [GitHub page](https://github.com/kenanlv)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* [Inter/Intra Local Search](https://github.com/topics/vehicle-routing-problem?l=python)
+
+## Further Readings
+
+* The Taxi-problem
+* Dail-a-ride
+
+# 

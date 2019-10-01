@@ -18,9 +18,9 @@ import os
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql:postgres:{os.getenv('POSTGRES_PASSWORD')}@localhost:5432/"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# print(os.getenv('GOOGLE_CLIENT_ID'),os.getenv('GOOGLE_CLIENT_SECRET'))
 app.config['GOOGLE_CLIENT_ID'] = os.getenv('GOOGLE_CLIENT_ID')
 app.config['GOOGLE_CLIENT_SECRET'] = os.getenv('GOOGLE_CLIENT_SECRET')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -121,7 +121,7 @@ def handle_authorize(remote, token, user_info):
     print(email, u_name)
 
     # add to db
-    u = User(name=user_info.name, email=user_info.email, will_present=True)
+    u = User(name=user_info.name, email=user_info.email, will_present=False)
 
     # exists = db.session.query(User.id).filter_by(name=u_name).scalar()
     exists = db_session.query(User.id).filter_by(name=u_name).scalar()

@@ -7,10 +7,10 @@ from email_sender_helper import send_email
 huey = MemoryHuey(utc=False)
 start_time = int(os.getenv("SOLVER_START_TIME"))
 
-@huey.periodic_task(crontab(minute='*/1')) #for every three minute
+# @huey.periodic_task(crontab(minute='*/1')) #for every three minute
 # crontab(month='*', day='*', day_of_week='6', hour='12', minute='0') #specific day of starting task
 # @huey.periodic_task(crontab(minute='0', hour='*/3'))
-# @huey.periodic_task(crontab(month='*', day='*', day_of_week='1', hour='11', minute='11'))
+@huey.periodic_task(crontab(month='*', day='*', day_of_week='6', hour=start_time, minute='0'))
 def every_week():
     print('This task runs every six seconds')
     # html_message = open('driver_email.html').read()

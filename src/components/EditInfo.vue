@@ -54,7 +54,7 @@
                                     outlined
                                     placeholder="Your current address"
                                     v-model="address_id"
-                                    :rules="[v => !!v || 'Name is required']"
+                                    :rules="[v => !!v || 'Address is required']"
                                     required
                             ></v-autocomplete>
                         </v-col>
@@ -73,7 +73,7 @@
                             <v-select
                                     :disabled="isDriver === 'No'"
                                     :items="capacities"
-                                    label="Capacity of your car"
+                                    label="Capacity excluding driver"
                                     outlined
                                     v-model="capacity"
                             ></v-select>

@@ -26,7 +26,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Backend
 
-##### Prerequisites
+#### Prerequisites
 
 > You will need docker running on your local machine.
 
@@ -45,7 +45,7 @@ Find the useful information [here](https://developers.google.com/).
 
 For writing the secrete keys into the environment variables, please refer to the **".env"** file for proper input format.
 
-
+#### Deploy
 After pulled this project, go to the docker-compose.yml directory and type in the following command.
 
 ```
@@ -62,7 +62,7 @@ When you **first** build and run the project, this will initialized your databas
 After the initialization, you could skip these two commands, and simply do "docker-compose up"
 
 
-##### Running the tests *(only for routing calculating function)*
+#### Running the tests *(only for routing calculating function)*
 
 Refering to [test.py]([here](https://developers.google.com/).) under flaskr folder. 
 
@@ -71,32 +71,32 @@ Write out your own problem for testing your solver.
 #
 ### Frontend
 Use npm to render your static html
-##### Project setup
+#### Project setup
 ```
 npm install
 ```
 
-##### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-##### Compiles and minifies for production
+#### Compiles and minifies for production
 ```
 npm run build
 ```
 
-##### Run your tests
+#### Run your tests
 ```
 npm run test
 ```
 
-##### Lints and fixes files
+#### Lints and fixes files
 ```
 npm run lint
 ```
 
-##### Customize configuration
+#### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 #
 

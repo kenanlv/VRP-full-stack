@@ -13,9 +13,12 @@ Though the problem changed to multiple deports to a single destination, we could
     - Periodic timer for the route calculating and sending emails to the user. 
 - Frontend:
     - Used Vue framwork
+    - Nginx server to connect with flask through wsgi proxy, all static html are handled by nginx.
 
 - Dockerized the whole package so that server could run on differnt operating system.
-  - flask + nginx + wsgi
+  - Flask + Nginx + WSGI
+  - PostgreSQL
+  - Huey periodic timer
 - Freed local machine byt Seting up a remote docker machine for deploying the web server remotely. 
       
 ## Getting Started
@@ -67,6 +70,7 @@ Write out your own problem for testing your solver.
 
 #
 ### Frontend
+Use npm to render your static html
 ##### Project setup
 ```
 npm install

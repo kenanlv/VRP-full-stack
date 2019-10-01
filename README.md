@@ -20,7 +20,7 @@ Though the problem changed to multiple deports to a single destination, we could
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-#### Backend
+### Backend
 
 ##### Prerequisites
 
@@ -65,7 +65,7 @@ Refering to [test.py]([here](https://developers.google.com/).) under flaskr fold
 Write out your own problem for testing your solver.
 
 #
-#### Frontend
+### Frontend
 ##### Project setup
 ```
 npm install

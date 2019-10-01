@@ -1,25 +1,25 @@
 # Full-Stack-VRP
 
-  The Vehicle Routing Problem is a combinational optimization problem which the goal is to find optimal routes for multiple vehicles to visiting a sets of locations. It generalises the Traveling Sales Man problem.
-  Different to the general VRP, where all vehicles come out from the same depot. We want to focusing on optimizing routes that going into the depot. 
-  > Imaging you and your friends are going to the place for some event. Some of your friend has a car, and some does not. What is the optimim way to distribute for car pool such that every one will get to the event place with the mimimum of driving distance. 
+  The Vehicle Routing Problem is a combinational optimization problem in which the goal is to find optimal routes for multiple vehicles to visiting sets of locations. It generalizes the Traveling Sales Man problem.
+  Different to the general VRP, where all vehicles come out from the same depot. We want to focus on optimizing routes that going into the depot. 
+  > Imagine you and your friends are going to the place for some event. Some of your friends have a car, and some do not. What is the optimum way to distribute for carpool such that everyone will get to the event place with the minimum of driving distance. 
   
 Though the problem changed to multiple deports to a single destination, we could still apply the same algorithm for VRP in our problem. We used Inter/Intra local route search in our case.
 
 - Backend:
-    - We choose to use flask as our backend framework, and PosgreSQL as our database to store the user information. 
-    - Usd Google Oauth API for user to login. We also generated our own JWT when retriving data from the database.
+    - We choose to use flask as our backend framework, and PostgreSQL as our database to store the user information. 
+    - Usd Google Oauth API for user to login. We also generated our JWT when retrieving data from the database.
     - Inter/Intra local search algorithm for optimizing the routes.
     - Periodic timer for the route calculating and sending emails to the user. 
 - Frontend:
-    - Used Vue framwork
-    - Nginx server to connect with flask through wsgi proxy, all static html are handled by nginx.
+    - Used Vue framework
+    - Nginx server to connect with flask through WSGI proxy, all static Html are handled by Nginx.
 
-- Dockerized the whole package so that server could run on differnt operating system.
+- Dockerized the whole package so that the server could run on different operating systems.
   - Flask + Nginx + WSGI
   - PostgreSQL
   - Huey periodic timer
-- Freed local machine byt Seting up a remote docker machine for deploying the web server remotely. 
+- Freed local machine by setting up a remote docker-machine for deploying the webserver remotely. 
       
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -28,12 +28,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 #### Prerequisites
 
-> You will need docker running on your local machine.
+> You will need Docker running on your local machine.
 
 > Register for **Google developer consol** and get the Google API keys as environment variables for the project. 
 Find the useful information [here](https://developers.google.com/).
 
-    APIs needed to registart and obtain secret keys:
+    APIs needed to register and obtain secret keys:
 
     Google Oauth, 
     Google Places, 
@@ -41,7 +41,7 @@ Find the useful information [here](https://developers.google.com/).
     Google Geocoding, 
     Google Maps Static
 
-> Have your web server and your own domain set up properly and obtain the access token and secrete key accordingly.
+> Have your web server and your domain set up properly and obtain the access token and secret key accordingly.
 
 For writing the secrete keys into the environment variables, please refer to the **".env"** file for proper input format.
 
@@ -66,7 +66,7 @@ After the initialization, you could skip these two commands, and simply do "dock
 
 Refering to [test.py]([here](https://developers.google.com/).) under flaskr folder. 
 
-Write out your own problem for testing your solver.
+Write out your own problem to testing your solver.
 
 #
 ### Frontend
@@ -106,7 +106,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * **Tony Fei** - [GitHub page](https://github.com/sa-tony)
 * **Kenan Lv** - [GitHub page](https://github.com/kenanlv)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 

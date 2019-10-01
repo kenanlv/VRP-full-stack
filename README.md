@@ -15,6 +15,7 @@ Though the problem changed to multiple deports to a single destination, we could
     - Used Vue framwork
 
 - Dockerized the whole package so that server could run on differnt operating system.
+  - flask + nginx + wsgi
 - Freed local machine byt Seting up a remote docker machine for deploying the web server remotely. 
       
 ## Getting Started

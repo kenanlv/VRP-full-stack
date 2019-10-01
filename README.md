@@ -58,7 +58,7 @@ When you **first** build and run the project, this will initialized your databas
 After the initialization, you could skip these two commands, and simply do "docker-compose up"
 
 
-### Running the tests *(only for routing calculating function)*
+##### Running the tests *(only for routing calculating function)*
 
 Refering to [test.py]([here](https://developers.google.com/).) under flaskr folder. 
 

@@ -25,9 +25,8 @@ Though the problem changed to multiple deports to a single destination, we could
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Backend
 
-#### Prerequisites
+### Prerequisites
 
 > You will need Docker and Node.js installed on your local machine.
 
@@ -46,7 +45,7 @@ Find the useful information [here](https://developers.google.com/).
 
 For writing the secrete keys into the environment variables, please refer to the **".env"** file for proper input format.
 
-#### Build and deploy
+### Build and deploy
 After pulled this project, go to the docker-compose.yml directory and type in the following command.
 
 ```
@@ -65,7 +64,7 @@ When you **first** build and run the project, this will initialized your databas
 After the initialization, you could skip these two commands, and simply do "docker-compose up"
 
 
-#### Running the tests *(only for routing calculating function)*
+### Running the tests *(only for routing calculating function)*
 
 Refering to [test.py]([here](https://developers.google.com/).) under flaskr folder. 
 

@@ -9,11 +9,12 @@ Though the problem changed to multiple deports to a single destination, we could
 - Backend:
     - We choose to use flask as our backend framework, and PostgreSQL as our database to store the user information. 
     - Usd Google Oauth API for user to login. We also generated our JWT when retrieving data from the database.
-    - Inter/Intra local search algorithm for optimizing the routes.
+    - Inter/Intra local search algorithm provided by the ortools for optimizing the routes.
     - Periodic timer for the route calculating and sending emails to the user. 
+    - Nginx server to connect with flask through uWSGI, all static files are handled by Nginx.
+
 - Frontend:
     - Used Vue framework
-    - Nginx server to connect with flask through WSGI proxy, all static Html are handled by Nginx.
 
 - Dockerized the whole package so that the server could run on different operating systems.
   - Flask + Nginx + WSGI
@@ -28,7 +29,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 #### Prerequisites
 
-> You will need Docker running on your local machine.
+> You will need Docker and Node.js installed on your local machine.
 
 > Register for **Google developer consol** and get the Google API keys as environment variables for the project. 
 Find the useful information [here](https://developers.google.com/).
@@ -45,10 +46,12 @@ Find the useful information [here](https://developers.google.com/).
 
 For writing the secrete keys into the environment variables, please refer to the **".env"** file for proper input format.
 
-#### Deploy
+#### Build and deploy
 After pulled this project, go to the docker-compose.yml directory and type in the following command.
 
 ```
+npm install
+npm run build
 docker-compose build
 docker-compose up -d db
 docker-compose run --rm web /bin/bash -c "python -c  'import database; database.init_db()'"
@@ -68,37 +71,6 @@ Refering to [test.py]([here](https://developers.google.com/).) under flaskr fold
 
 Write out your own problem to testing your solver.
 
-#
-### Frontend
-Use npm to render your static html
-#### Project setup
-```
-npm install
-```
-
-#### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-#### Compiles and minifies for production
-```
-npm run build
-```
-
-#### Run your tests
-```
-npm run test
-```
-
-#### Lints and fixes files
-```
-npm run lint
-```
-
-#### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-#
 
 
 ## Authors

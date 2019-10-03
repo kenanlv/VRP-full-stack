@@ -83,7 +83,7 @@ def calculation_prepare():
         ends_geo += '|place_id=' + locations[j]
     # URL example:
     # geocoding  https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-    # https://maps.googleapis.com/maps/api/geocode/json?place_id=ChIJOwE7_GTtwokRFq0uOwLSE9g&key=AIzaSyB_Ft9gDmURfbNOy5khTul1IstGeWG1qe4
+    
     endpoint_geo = 'https://maps.googleapis.com/maps/api/geocode/json?'
     api_key_geo = os.getenv('API_KEY_GEO')
     for l in locations:

@@ -47,9 +47,9 @@ For writing the secrete keys into the environment variables, please refer to the
 
 ### Setting up SendGrid
 
-The SendGrid API is used for distributing and sending emails to users. Please refer to the *email_sender_helper.py* to see how we implemented the API OR use [SendGrid Documentation](https://sendgrid.com/docs/) for more information.
+The SendGrid API is used for distributing and sending emails to users. Please refer to the ```email_sender_helper.py``` to see how we implemented the API OR use [SendGrid Documentation](https://sendgrid.com/docs/) for more information.
 
-We used our own SendGrid email templates hosting on the SendGrid website. However, we encourage that you make your own templates. *(We also included an example email template HTML in under the flaskr folder: driver_email.html)* You could certainly have the templates locally and ease the process of modifying the templates.
+We used our own SendGrid email templates hosting on the SendGrid website. However, we encourage that you make your own templates. *(We also included an example email template HTML in under the flaskr folder: ```driver_email.html```)* You could certainly have the templates locally and ease the process of modifying the templates.
 
 
 ### Setting up ```.env``` file

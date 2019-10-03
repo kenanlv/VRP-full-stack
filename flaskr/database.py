@@ -3,9 +3,9 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-user = "postgres"  # os.environ['POSTGRES_USER']
+user = os.getenv('POSTGRES_USER')  # os.environ['POSTGRES_USER']
 pwd = os.getenv('POSTGRES_PASSWORD')  # os.environ['POSTGRES_PASSWORD']
-db = "postgres"  # os.environ['POSTGRES_DB']
+db = os.getenv('POSTGRES_DB')
 # - POSTGRES_USER = postgres
 # - POSTGRES_PASSWORD = postgres
 # - POSTGRES_DB = postgres

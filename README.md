@@ -8,7 +8,7 @@ Though the problem changed to multiple deports to a single destination, we could
 
 - Backend:
     - We choose to use flask as our backend framework, and PostgreSQL as our database to store the user information. 
-    - Usd Google Oauth API for user to login. We also generated our JWT when retrieving data from the database.
+    - Used Google Oauth API for user to login. We also generated our JWT when retrieving data from the database.
     - Inter/Intra local search algorithm provided by the ortools for optimizing the routes.
     - Periodic timer for the route calculating and sending emails to the user. 
     - Nginx server to connect with flask through uWSGI, all static files are handled by Nginx.
@@ -45,10 +45,34 @@ Find the useful information [here](https://developers.google.com/).
 
 For writing the secrete keys into the environment variables, please refer to the **".env"** file for proper input format.
 
+### Setting up SendGrid
+
+TODO
+
+
+### Setting up ```.env``` file
+After pulled this project, go to the docker-compose.yml directory and make an ```.env``` file with 
+following environment variables:
+```.env
+SECRET_KEY=hvkjhjkls              # Used for encryption. PLEASE GENERATE YOUR OWN SECRET
+GOOGLE_CLIENT_SECRET=[YOUR_KEY]   # Google OAuth secret
+GOOGLE_CLIENT_ID=[YOUR_KEY]       # Google OAuth client ID
+DEST_ID=[YOUR_PLACE_ID]           # Google Place ID for your destination
+SENDGRID_API_KEY=[YOUR_KEY]       # Sendgrid API to send Email
+API_KEY_DIS=[YOUR_KEY]            # Google Places API key
+API_KEY_GEO=[YOUR_KEY]            # Google Places API key
+SOLVER_START_TIME=12              # Time of day that solver will start
+PICK_UP_TIME=10                   # Time of day that drivers start to pick up passengers
+SOLVER_TIME_SPAN=15               # Time in seconds for solver to run
+POSTGRES_USER=postgres            # Default username for database
+POSTGRES_PASSWORD=[YOUR_PWD]      # Password for database
+POSTGRES_DB=postgres              # Default database name
+```
+
 ### Build and deploy
 After pulled this project, go to the docker-compose.yml directory and type in the following command.
 
-```
+```shell script
 npm install
 npm run build
 docker-compose build

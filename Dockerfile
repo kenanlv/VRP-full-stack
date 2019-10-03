@@ -5,7 +5,6 @@ MAINTAINER Kenan Lv <kelv@uw.edu>
 
 RUN mkdir /app
 RUN mkdir /app/flaskr
-COPY .env /app/flaskr
 COPY Pipfile /app/flaskr
 COPY Pipfile.lock /app/flaskr
 WORKDIR /app/flaskr
@@ -14,6 +13,7 @@ COPY requirements.txt /app/flaskr
 RUN pip install -r requirements.txt
 
 COPY flaskr /app/flaskr
+COPY .env /app/flaskr
 
 ENV FLASK_ENV development
 ENV TZ=America/Los_Angeles

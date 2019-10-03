@@ -1,8 +1,7 @@
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail, Personalization, Substitution
+from sendgrid.helpers.mail import Mail
 from python_http_client import exceptions
 import os
-import json
 import math
 
 
@@ -10,13 +9,13 @@ def send_email(identifier, email, phone=None, time=None, sub_user=None, name=Non
     template_list_id = ['d-c37816845b1447c892c7db79f393dc54', 'd-13dc2f2deda6425481cd74f18c61cc33',
                         'd-6cd5efc8410d469795cd6b6709dbc2ff']
     message = Mail(
-        from_email='noReply@vrpcommute.tk',
+        from_email='noreply@vrpcommute.tk',
         to_emails=email)
 
-    PICK_UP_TIME = os.getenv("PICK_UP_TIME")
+    pick_up_time = os.getenv("PICK_UP_TIME")
     # for user
     if identifier == 'User':
-        template_data = {'phone': phone, 'time': PICK_UP_TIME + ':' + str(math.ceil(time)), 'name': name, 'sub_user': sub_user}
+        template_data = {'phone': phone, 'time': pick_up_time + ':' + str(math.ceil(time)), 'name': name, 'sub_user': sub_user}
         id_idx = 0
     else:
         template_data = {}

@@ -28,7 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-> You will need Docker and Node.js installed on your local machine.
+> You will need Docker and Node.js installed on your local machine. 
 
 > Register for **Google developer consol** and get the Google API keys as environment variables for the project. 
 Find the useful information [here](https://developers.google.com/).
@@ -47,7 +47,9 @@ For writing the secrete keys into the environment variables, please refer to the
 
 ### Setting up SendGrid
 
-TODO
+The SendGrid API is used for distributing and sending emails to users. Please refer to the *email_sender_helper.py* to see how we implemented the API OR use [SendGrid Documentation](https://sendgrid.com/docs/) for more information.
+
+We used our own SendGrid email templates hosting on the SendGrid website. However, we encourage that you make your own templates. *(We also included an example email template HTML in under the flaskr folder: driver_email.html)* You could certainly have the templates locally and ease the process of modifying the templates.
 
 
 ### Setting up ```.env``` file

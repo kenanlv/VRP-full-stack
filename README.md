@@ -38,6 +38,26 @@ Though the problem changed to multiple deports to a single destination, we could
   <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/register_completion.png">
 </p>
 
+  > **Vehicle Routing Calculation**
+  
+  > **Google API**
+<p align="center">
+  <img width="500" height="350" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/GoogleLocalSearchSolver.png">
+</p>
+  
+  > **Our designed inter/intra local search**
+<p align="center">
+  <img width="500" height="350" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/SolverNotGoogle.png">
+</p>
+  
+
+  > **Email templates: customer and driver**
+<p align="center">
+  <img width="300" height="500" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/customer_temp_email.PNG">
+  <img width="300" height="500" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/driver_email_no_one.PNG">
+  <img width="250" height="500" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/driver_email.PNG">
+</p>
+
 #
 
 ## Getting Started

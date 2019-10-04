@@ -22,6 +22,24 @@ Though the problem changed to multiple deports to a single destination, we could
   - Huey periodic timer
 - Freed local machine by setting up a remote docker-machine for deploying the webserver remotely. 
       
+## Demo
+  > **Log-in page**
+<p align="center">
+  <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/login_page.png">
+</p>
+
+  > **Registration page**
+<p align="center">
+  <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/register.png">
+</p>
+
+  > **Successfully registered notification page**
+<p align="center">
+  <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/register_completion.png">
+</p>
+
+#
+
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 

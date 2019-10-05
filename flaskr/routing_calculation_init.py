@@ -83,7 +83,7 @@ def calculation_prepare():
         ends_geo += '|place_id=' + locations[j]
     # URL example:
     # geocoding  https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-    
+
     endpoint_geo = 'https://maps.googleapis.com/maps/api/geocode/json?'
     api_key_geo = os.getenv('API_KEY_GEO')
     for l in locations:
@@ -105,3 +105,20 @@ def calculation_prepare():
             'time_cost': time_cost, 'locations_txt': locations_text, 'email_list': email_list, 'phone_num': phone_num,
             'name': user_name}
     return data
+
+
+def get_and_print():
+    all_users = db_session.query(User).all()
+    print(
+        'id' + '\t' + 'name' + '\t' + 'email' + '\t' + '\t' + 'is_driver' + '\t' + 'will_present' + '\t' + 'capacity' + '\t' +
+        'phone_number' + '\t' + 'address_show_txt' + '\n')
+    for user in all_users:
+        print(
+            str(user.id) + '\t' +
+            str(user.name) + '\t' +
+            str(user.email) + '\t' + '\t' +
+            str(user.is_driver) + '\t' +
+            str(user.will_present) + '\t' +
+            str(user.capacity) + '\t' +
+            str(user.phone_number) + '\t' +
+            str(user.address_show_txt) + '\n')

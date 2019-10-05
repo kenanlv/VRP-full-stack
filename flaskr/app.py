@@ -11,7 +11,6 @@ from flask_jwt_extended import (
 import requests
 from models import User
 from database import db_session
-from json import loads
 import re
 
 import os
@@ -48,7 +47,7 @@ def get_update_user_info():
         find_user.name = json['name']
         find_user.is_driver = json['is_driver'] == 'True'
         find_user.capacity = int(json['capacity']) if json['is_driver'] == 'True' else 1
-        find_user.will_present = json['will_present'] == 'True'
+        find_user.will_present = True
         find_user.phone_number = json['phone_number']
         find_user.address_id = json['address_id']
         find_user.address_show_txt = json['address_show_txt']
@@ -104,10 +103,6 @@ def handle_authorize(remote, token, user_info):
     # exists is not None
     if not exists:
         db_session.add(u)
-        db_session.commit()
-    else:
-        x = db_session.query(User).get(exists)
-        x.will_present = True
         db_session.commit()
 
     # generating jwt

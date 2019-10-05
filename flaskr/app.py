@@ -75,13 +75,13 @@ def api_builder(id):
 
 
 def validate_user(user: User):
-    if len(user.name.strip()) == 0:
+    if user.name and len(user.name.strip()) == 0:
         return False
-    if not re.match('^\d{10}$', user.phone_number):
+    if user.phone_number and not re.match('^\d{10}$', user.phone_number):
         return False
     if not 0 < user.capacity < 6:
         return False
-    if len(user.address_show_txt.strip()) == 0:
+    if user.address_show_txt and len(user.address_show_txt.strip()) == 0:
         return False
     response = requests.get(api_builder(user.address_id)).json()
     if response['status'] == 'OK':

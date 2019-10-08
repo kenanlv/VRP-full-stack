@@ -1,4 +1,4 @@
-# Full-Stack-VRP
+# VRP-Full-Stack
 
   The Vehicle Routing Problem is a combinational optimization problem in which the goal is to find optimal routes for multiple vehicles to visiting sets of locations. It generalizes the Traveling Sales Man problem.
   Different to the general VRP, where all vehicles come out from the same depot. We want to focus on optimizing routes that going into the depot. 
@@ -25,37 +25,37 @@ Though the problem changed to multiple deports to a single destination, we could
 ## Demo
   > **Log-in page**
 <p align="center">
-  <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/login_page.png">
+  <img width="800" height="400" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/login_page.png">
 </p>
 
   > **Registration page**
 <p align="center">
-  <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/register.png">
+  <img width="800" height="400" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/register.png">
 </p>
 
   > **Successfully registered notification page**
 <p align="center">
-  <img width="800" height="400" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/register_completion.png">
+  <img width="800" height="400" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/register_completion.png">
 </p>
 
   > **Vehicle Routing Calculation**
   
   > **Google API**
 <p align="center">
-  <img width="500" height="350" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/GoogleLocalSearchSolver.png">
+  <img width="500" height="350" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/GoogleLocalSearchSolver.png">
 </p>
   
   > **Our designed inter/intra local search**
 <p align="center">
-  <img width="500" height="350" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/SolverNotGoogle.png">
+  <img width="500" height="350" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/SolverNotGoogle.png">
 </p>
   
 
   > **Email templates: customer and driver**
 <p align="center">
-  <img width="300" height="500" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/customer_temp_email.PNG">
-  <img width="300" height="500" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/driver_email_no_one.PNG">
-  <img width="250" height="500" src="https://github.com/sa-tony/full-stack-vrp/blob/master/flaskr/templates/demo_pic/driver_email.PNG">
+  <img width="300" height="500" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/customer_temp_email.PNG">
+  <img width="300" height="500" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/driver_email_no_one.PNG">
+  <img width="250" height="500" src="https://github.com/kenanlv/VRP-full-stack/blob/master/flaskr/templates/demo_pic/driver_email.PNG">
 </p>
 
 #

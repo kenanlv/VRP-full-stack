@@ -1,5 +1,12 @@
+<p align="center">
+<a  href="www.vrpcommute.tk">
+       <img align="center" height=85 src="https://github.com/kenanlv/VRP-full-stack/blob/master/src/assets/logo.svg">
+   </a>
+ <p/>
+
 # VRP-Full-Stack
 
+  
   The Vehicle Routing Problem is a combinational optimization problem in which the goal is to find optimal routes for multiple vehicles to visiting sets of locations. It generalizes the Traveling Sales Man problem.
   Different to the general VRP, where all vehicles come out from the same depot. We want to focus on optimizing routes that going into the depot. 
   > Imagine you and your friends are going to the place for some event. Some of your friends have a car, and some do not. What is the optimum way to distribute for carpool such that everyone will get to the event place with the minimum of driving distance. 

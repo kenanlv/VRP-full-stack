@@ -26,7 +26,7 @@ pipenv==2018.11.26
 protobuf==3.9.2
 psycopg2==2.8.3
 pycparser==2.19
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyparsing==2.4.2
 python-dateutil==2.8.0
 python-editor==1.0.4
